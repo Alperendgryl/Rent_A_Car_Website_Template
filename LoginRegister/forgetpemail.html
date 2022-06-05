@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel="stylesheet" href="forgetp.css">
+    <title>Forget_password</title>
+</head>
+<body>
+    <div class="container">
+        <div class="forms">
+            <div class="form login">
+                <span class="title">Reset Password</span>
+                <form  id="resetpasswordform">
+                    <div class="input-field">
+                        <input type="email" class="email" placeholder="enter your email" id="resetpasswordemail" required>
+                        <i class="uil uil-lock icon"></i>
+                    </div>
+                    
+
+                    <div class="input-field button">
+                        <input type="submit" value="Reset">
+                    </div>
+                </form>
+                <div class="login-signup">
+                    <span class="text">You can go back to login page from
+                        <a href="loginregister.html" class="text login-link">here.</a>
+                    </span>
+                </div>
+            </div>
+    
+    <script type="module"> 
+
+
+const firebaseConfig = {
+    apiKey: "AIzaSyBHUiOQBt8mFrrHOJFkv47pBDOlmL1CAqQ",
+  authDomain: "car-rent-a925b.firebaseapp.com",
+  projectId: "car-rent-a925b",
+  storageBucket: "car-rent-a925b.appspot.com",
+  messagingSenderId: "760354154200",
+  appId: "1:760354154200:web:536e8dcfa89e82cbdcd9ad",
+  measurementId: "G-WCJGGBHZ4N"
+        };
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.9/firebase-app.js";
+import { getAuth, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/9.6.9/firebase-auth.js";
+
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+
+const resetPasswordForm = document.querySelector('#resetpasswordform');
+
+resetPasswordForm.addEventListener('submit', (e) => {
+
+const email = resetPasswordForm['resetpasswordemail'].value;
+sendPasswordResetEmail(auth, email)
+  .then(() => {
+    
+    // Password reset email sent!
+    // ..
+    
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    
+    // ..
+  });
+  
+});
+
+    </script>
+</body>
+</html>

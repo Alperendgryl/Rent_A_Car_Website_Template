@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Login & Registration Form</title>
+</head>
+<body>
+    
+    <div class="container">
+        <div class="forms">
+            <div class="form login">
+                <span class="title">Login</span>
+
+                <form  id="login-form">
+
+                    <div class="input-field">
+                        <input type="email" placeholder="Enter your email" id="login-email" required>
+                        <i class="uil uil-envelope icon"></i>
+                    </div>
+
+                    <div class="input-field">
+                        <input type="password" class="password" placeholder="Enter your password" id="login-password" required>
+                        <i class="uil uil-lock icon"></i>
+                        <i class="uil uil-eye-slash showHidePw"></i>
+                    </div>
+
+                    <div class="checkbox-text">
+                        <div class="checkbox-content">
+                            <input type="checkbox" id="logCheck">
+                            <label for="logCheck" class="text">Remember me</label>
+                        </div>
+                        
+                        <a href="forgetpemail.html" class="text">Forgot password?</a>
+                    </div>
+
+                    <div class="input-field button">
+                        <input type="submit" value="Login Now" >
+                    </div>
+                </form>
+
+                <div class="login-signup">
+                    <span class="text">Not a member?
+                        <a href="#" class="text signup-link">Signup now</a>
+                    </span>
+                </div>
+            </div>
+
+            <!-- Registration Form -->
+            <div class="form signup">
+                <span class="title">Registration</span>
+
+                <form action="#" id="signup-form">
+
+                    <div class="input-field" > 
+                        <input type="text" placeholder="Enter your name" id="signup-name" required>
+                        <i class="uil uil-user"></i>
+                    </div>
+
+                    <div class="input-field" >
+                        <input type="text" placeholder="Enter your surname" id="signup-surname" required>
+                        <i class="uil uil-user"></i>
+                    </div>
+
+                    <div class="input-field" >
+                        <input type="email" placeholder="Enter your email" id="signup-email" required>
+                        <i class="uil uil-envelope icon"></i>
+                    </div>
+
+                    <div class="input-field" >
+                        <input type="password" class="password" placeholder="Create a password" id="signup-password" required>
+                        <i class="uil uil-lock icon"></i>
+                    </div>
+
+                    <div class="input-field" >
+                        <input type="password" class="password" placeholder="Confirm a password" id="signup-passwordverify" required>
+                        <i class="uil uil-lock icon"></i>
+                        <i class="uil uil-eye-slash showHidePw"></i>
+                    </div>
+
+                    <div class="input-field button" >
+                        <input type="submit" value="Register Now">
+                    </div>
+                    
+                </form>
+
+                <div class="login-signup">
+                    <span class="text">Already have an account ?
+                        <a href="#" class="text login-link">Login</a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.9/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.9/firebase-auth.js";
+        import { getFirestore} from "https://www.gstatic.com/firebasejs/9.6.9/firebase-firestore.js";
+        import { doc, setDoc } from "https://www.gstatic.com/firebasejs/9.6.9/firebase-firestore.js";
+        
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyBHUiOQBt8mFrrHOJFkv47pBDOlmL1CAqQ",
+            authDomain: "car-rent-a925b.firebaseapp.com",
+             projectId: "car-rent-a925b",
+            storageBucket: "car-rent-a925b.appspot.com",
+            messagingSenderId: "760354154200",
+             appId: "1:760354154200:web:536e8dcfa89e82cbdcd9ad",
+            measurementId: "G-WCJGGBHZ4N"
+        };
+      
+        // Initialize Firebase 
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth();
+        const db = getFirestore();
+
+
+        const signupForm = document.querySelector('#signup-form');
+
+signupForm.addEventListener('submit', (e) => {
+  
+
+   
+  const email = signupForm['signup-email'].value;
+  const password = signupForm['signup-password'].value;
+  const passwordverify = signupForm['signup-passwordverify'].value;
+  const name = signupForm['signup-name'].value;
+  const surname = signupForm['signup-surname'].value;
+  
+  if ( password == passwordverify){
+    createUserWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    // Signed in 
+    const user = userCredential.user;
+    
+    
+    
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+
+    
+  });
+
+  
+ 
+ 
+  }else{
+    alert("passwords must be same");
+    
+  }
+
+
+
+});
+    
+
+
+
+const loginForm = document.querySelector('#login-form');
+loginForm.addEventListener('submit', (e) => {
+    
+  
+  // get user info
+  const email = loginForm['login-email'].value;
+  const password = loginForm['login-password'].value;
+
+  signInWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    
+     
+    const user = userCredential.user;
+    
+    
+    
+    
+const auth = getAuth();
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+   
+    const uid = user.uid;
+    alert(uid);
+    if(email == "admin@hotmail.com"){
+        window.location = ('../loggedin/index.html');
+    }else{
+        window.location = ('../loggedin/index.html');
+    }
+  } else {
+    // User is signed out
+    // ...
+  }
+});
+    
+    
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    alert("loginfailed");
+    
+    
+    
+    
+  });
+  
+  
+
+  
+});
+    
+      </script>
+
+      
+</body>
+</html>

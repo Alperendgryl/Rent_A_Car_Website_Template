@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>FILOCARS - Car Rental</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <!-- Google Web Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Rubik&display=swap"
+    rel="stylesheet">
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css" rel="stylesheet">
+  <!-- Libraries Stylesheet -->
+  <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+  <!-- Customized Bootstrap Stylesheet -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <!-- Filotech -->
+  <div class="navbar bg-dark p-0">
+    <div class="col py-3 pl-5">
+        <a href="index.html" style="text-decoration: none;">
+            <h1 class="text-uppercase text-primary mb-auto">filotech</h1>
+        </a>
+    </div>
+    <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+        <li><a href="contact.html" class="nav-link text-white">Contact</a></li>
+        <li><a href="faqs.html" class="nav-link text-white">FAQs</a></li>
+        <li><a href="about.html" class="nav-link text-white">About</a></li>
+    </ul>
+    <form action="#" id="searchform" class="col-lg-auto">
+        <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search" id="search">
+    </form>
+    <div class="text-right pr-2">
+        <a href="LoginRegister/loginregister.html">
+            <button class="btn btn-outline-light" style="height: 40px; width: 100px;">Login</button>
+        </a>
+    </div>
+    <div class="text-right pr-3">
+        <a href="LoginRegister/loginregister.html">
+            <button class="btn btn-outline-light" style="height: 40px; width: 120px;">Profile</button>
+        </a>
+    </div>
+</div>
+<a href="faqs.html">
+    <button class="btn bg-dark text-uppercase text-light fixed-bottom" style="height: 40px; width: 130px;">Need Help ?</button>
+</a>
+<!-- Filotech -->
+  <!-- Page Transition Buttons -->
+  <div class="container-fluid bg-dark p-0">
+    <nav class="navbar p-0">
+      <div class="col px-0">
+        <a href="booking.html" style="text-decoration: none;">
+          <button class="btn btn-primary btn-block mb-0" style="height: 70px;">Rezervation</button>
+        </a>
+      </div>
+      <div class="col px-0">
+        <a href="campaings.html" style="text-decoration: none;">
+          <button class="btn btn-primary btn-block mb-0" style="height: 70px;">Campaigns</button>
+        </a>
+      </div>
+      <div class="col px-0">
+        <a href="offices.html" style="text-decoration: none;">
+          <button class="btn btn-primary btn-block mb-0" style="height: 70px;">Offices</button>
+        </a>
+      </div>
+      <div class="col px-0">
+        <a href="car.html" style="text-decoration: none;">
+          <button class="btn btn-primary btn-block mb-0" style="height: 70px;">Fleet</button>
+        </a>
+      </div>
+    </nav>
+  </div>
+  <!-- Page Transition Buttons -->
+  <div class="row-fleet">
+    <div class="left">
+      <div class="container p-1 mt-1 mb-1">
+        <input type="search " class="form-control form-control-dark border-primary" placeholder="Search... "
+          aria-label="Search " id="myInput" onkeyup="search()">
+      </div>
+      <div class="container p-1 mt-1 mb-1">
+        <button class="btn btn-light btn-block mb-0 text-primary border-primary"
+          style="width: 100%;  margin-bottom: 50px;" onclick="reset()">Reset</button>
+        <button class="btn btn-light btn-block mb-0 text-primary border-primary"
+          style="width: 100%;  margin-bottom: 50px;" onclick="sortTableByPriceInc()">Sort by Price Increasing</button>
+        <button class="btn btn-light btn-block mb-0 text-primary border-primary"
+          style="width: 100%;  margin-bottom: 50px;" onclick="sortTableByPriceDesc()">Sort by Price Decreasing</button>
+        <button class="btn btn-light btn-block mb-0 text-primary border-primary"
+          style="width: 100%;  margin-bottom: 50px;" onclick="sortTableByYearInc()">Sort by Year Increasing</button>
+        <button class="btn btn-light btn-block mb-0 text-primary border-primary"
+          style="width: 100%;  margin-bottom: 50px;" onclick="sortTableByYearDesc()">Sort By Year Decreasing</button>
+      </div>
+      <script>
+        function sortTableByYearInc() {
+          var table, rows, switching, i, x, y, shouldSwitch;
+          table = document.getElementById("myTable");
+          switching = true;
+          while (switching) {
+            switching = false;
+            rows = table.rows;
+            for (i = 1; i < (rows.length - 1); i++) {
+              shouldSwitch = false;
+              x = rows[i].getElementsByTagName("TD")[4];
+              y = rows[i + 1].getElementsByTagName("TD")[4];
+              if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                shouldSwitch = true;
+                break;
+              }
+            }
+            if (shouldSwitch) {
+              rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+              switching = true;
+            }
+          }
+        }
+        function sortTableByPriceInc() {
+          var table, rows, switching, i, x, y, shouldSwitch;
+          table = document.getElementById("myTable");
+          switching = true;
+          while (switching) {
+            switching = false;
+            rows = table.rows;
+            for (i = 1; i < (rows.length - 1); i++) {
+              shouldSwitch = false;
+              x = rows[i].getElementsByTagName("TD")[9];
+              y = rows[i + 1].getElementsByTagName("TD")[9];
+              if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                shouldSwitch = true;
+                break;
+              }
+            }
+            if (shouldSwitch) {
+              rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+              switching = true;
+            }
+          }
+        }
+        function sortTableByYearDesc() {
+          var table, rows, switching, i, x, y, shouldSwitch;
+          table = document.getElementById("myTable");
+          switching = true;
+          while (switching) {
+            switching = false;
+            rows = table.rows;
+            for (i = 1; i < (rows.length - 1); i++) {
+              shouldSwitch = false;
+              x = rows[i].getElementsByTagName("TD")[4];
+              y = rows[i + 1].getElementsByTagName("TD")[4];
+              if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                shouldSwitch = true;
+                break;
+              }
+            }
+            if (shouldSwitch) {
+              rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+              switching = true;
+            }
+          }
+        }
+        function sortTableByPriceDesc() {
+          var table, rows, switching, i, x, y, shouldSwitch;
+          table = document.getElementById("myTable");
+          switching = true;
+          while (switching) {
+            switching = false;
+            rows = table.rows;
+            for (i = 1; i < (rows.length - 1); i++) {
+              shouldSwitch = false;
+              x = rows[i].getElementsByTagName("TD")[9];
+              y = rows[i + 1].getElementsByTagName("TD")[9];
+              if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                shouldSwitch = true;
+                break;
+              }
+            }
+            if (shouldSwitch) {
+              rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+              switching = true;
+            }
+          }
+        }
+        function reset() {
+          location.reload();
+        }
+      </script>
+      <div class="container p-1 mt-1 mb-1">
+        <details>
+          <summary class="text-center p-1 mb-1 text-light bg-primary text-uppercase">BRAND </summary>
+          <div class="bg-light border pl-2 pr-5 py-1">
+            <input type="checkbox" name="brands" id="audi" value="audi" onclick="brandfilter()">
+            <label for="" class="text-dark">Audi</label>
+          </div>
+          <div class="bg-light border pl-2 pr-5 py-1">
+            <input type="checkbox" name="brands" id="honda" value="honda" onclick="brandfilter()">
+            <label for="" class="text-dark">Honda</label>
+          </div>
+          <div class="bg-light border pl-2 pr-5 py-1">
+            <input type="checkbox" name="brands" id="citroen" value="citroen" onclick="brandfilter()">
+            <label for="" class="text-dark">Citroen</label>
+          </div>
+          <div class="bg-light border pl-2 pr-5 py-1">
+            <input type="checkbox" name="brands" id="renault" value="renault" onclick="brandfilter()">
+            <label for="" class="text-dark">Renault</label>
+          </div>
+        </details>
+      </div>
+      <div class="container p-1 mt-1 mb-1">
+        <details>
+          <summary class="text-center p-1 mb-1 text-light bg-primary text-uppercase"> GEARBOX</summary>
+          <div class="bg-light border pl-2 pr-5 py-1">
+            <input type="checkbox" name="gearbox" value="automatic" id="automatic" onclick="gearboxfilter()">
+            <label for="" class="text-dark">Automatic</label>
+          </div>
+          <div class="bg-light border pl-2 pr-5 py-1">
+            <input type="checkbox" name="gearbox" value="manual" id="manual" onclick="gearboxfilter()">
+            <label for="" class="text-dark">Manual</label>
+          </div>
+        </details>
+      </div>
+      <div class="container p-1 mt-1 mb-1">
+        <details>
+          <summary class="text-center p-1 mb-1 text-light bg-primary text-uppercase">TYPE</summary>
+          <div class="bg-light border pl-2 pr-5 py-1">
+            <input type="checkbox" id="SUV" onclick="typefilter()">
+            <label for="" class="text-dark">SUV</label>
+          </div>
+          <div class="bg-light border pl-2 pr-5 py-1">
+            <input type="checkbox" id="" onclick="typefilter()">
+            <label for="" class="text-dark">Sedan</label>
+          </div>
+          <div class="bg-light border pl-2 pr-5 py-1">
+            <input type="checkbox" id="" onclick="typefilter()">
+            <label for="" class="text-dark">Hatchback</label>
+          </div>
+        </details>
+      </div>
+      <div class="container p-1 mt-1 mb-1">
+        <details>
+          <summary class="text-center p-1 mb-1 text-light bg-primary text-uppercase">YEAR</summary>
+          <div class="bg-light border pl-2 pr-5 py-1">
+            <input type="text" name="price" id="minyear" placeholder="minyear" value="">
+          </div>
+          <div class="bg-light border pl-2 pr-5 py-1">
+            <input type="text" name="price" id="maxyear" placeholder="maxyear" value="">
+          </div>
+          <button class="btn btn-light btn-block mb-0 text-primary border-primary"
+            style="width: 100%;  margin-bottom: 50px;" onclick="yearfilter()">filter</button>
+        </details>
+      </div>
+      <div class="container p-1 mt-1 mb-1">
+        <details>
+          <summary class="text-center p-1 mb-1 text-light bg-primary text-uppercase">PRICE</summary>
+          <div class="bg-light border pl-2 pr-5 py-1">
+            <input type="text" name="price" id="minprice" placeholder="minprice" value="">
+          </div>
+          <div class="bg-light border pl-2 pr-5 py-1">
+            <input type="text" name="price" id="maxprice" placeholder="maxprice" value="">
+          </div>
+          <button class="btn btn-light btn-block mb-0 text-primary border-primary"
+            style="width: 100%;  margin-bottom: 50px;" onclick="pricefilter()">filter</button>
+        </details>
+      </div>
+      <div class="container p-1 mt-1 mb-1">
+        <details>
+          <summary class="text-center p-1 mb-1 text-light bg-primary text-uppercase">PERSON CAPACITY</summary>
+          <div class="bg-light border pl-2 pr-5 py-1">
+            <input type="text" name="price" id="minperson" placeholder="minperson" value="">
+          </div>
+          <div class="bg-light border pl-2 pr-5 py-1">
+            <input type="text" name="price" id="maxperson" placeholder="maxperson" value="">
+          </div>
+          <button class="btn btn-light btn-block mb-0 text-primary border-primary"
+            style="width: 100%;  margin-bottom: 50px;" onclick="personfilter()">filter</button>
+        </details>
+      </div>
+      <div class="container p-1 mt-1 mb-1">
+        <details>
+          <summary class="text-center p-1 mb-1 text-light bg-primary text-uppercase">LUGGAGE CAPACITY</summary>
+          <div class="bg-light border pl-2 pr-5 py-1">
+            <input type="text" name="price" id="minluggage" placeholder="minluggage" value="">
+          </div>
+          <div class="bg-light border pl-2 pr-5 py-1">
+            <input type="text" name="price" id="maxluggage" placeholder="maxluggage" value="">
+          </div>
+          <button class="btn btn-light btn-block mb-0 text-primary border-primary"
+            style="width: 100%;  margin-bottom: 50px;" onclick="luggagefilter()">filter</button>
+        </details>
+      </div>
+      
+</body>
+</html>
